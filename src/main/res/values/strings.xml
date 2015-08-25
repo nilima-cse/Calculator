@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Calculator</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_btn">+</string>
+    <string name="sub_btn">-</string>
+    <string name="mul_btn">*</string>
+    <string name="div_btn">/</string>
+    <string name="point_btn">.</string>
+    <string name="show_result_btn">Show Result</string>
+    <string name="first_value">Enter a value</string>
+    <string name="second_value">Enter a value</string>
+    <string name="result_view">Result</string>
+</resources>

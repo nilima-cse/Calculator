@@ -1,0 +1,116 @@
+package com.android.nilima.calculator;
+
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button addBtn,subBtn,mulBtn,divBtn,showResultBtn;
+    Double num1,num2,result;
+    TextView resultView;
+    String operator;
+    EditText firstValueInput,secondValueInput;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        firstValueInput=(EditText)findViewById(R.id.first_value_ET);
+        secondValueInput=(EditText)findViewById(R.id.second_value_ET);
+        resultView=(TextView)findViewById(R.id.result_View);
+
+        addBtn=(Button)findViewById(R.id.add_Btn);
+        subBtn=(Button)findViewById(R.id.sub_Btn);
+        mulBtn=(Button)findViewById(R.id.mul_Btn);
+        divBtn=(Button)findViewById(R.id.div_Btn);
+
+
+
+
+        addBtn.setOnClickListener(this);
+        subBtn.setOnClickListener(this);
+        mulBtn.setOnClickListener(this);
+        divBtn.setOnClickListener(this);
+
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+
+        if (TextUtils.isEmpty(firstValueInput.getText().toString())){
+            firstValueInput.setError("Please enter valid number");
+            firstValueInput.requestFocus();
+            return;
+        }
+        else if (TextUtils.isEmpty(secondValueInput.getText().toString())){
+            secondValueInput.setError("Enter valid number");
+            secondValueInput.requestFocus();
+            return;
+        }
+
+
+        num1=Double.parseDouble(firstValueInput.getText().toString());
+        num2=Double.parseDouble(secondValueInput.getText().toString());
+
+
+        switch (v.getId()){
+            case R.id.add_Btn:
+                operator="+";
+                result=num1+num2;
+                break;
+            case R.id.sub_Btn:
+                operator="-";
+                result=num1-num2;
+                break;
+            case R.id.mul_Btn:
+                operator="*";
+                result=num1*num2;
+                break;
+            case R.id.div_Btn:
+                operator="/";
+                result=num1/num2;
+                break;
+            default:
+                break;
+
+        }
+        resultView.setText(num1+" "+operator+" "+num2+"="+" "+result);
+
+    }
+}
